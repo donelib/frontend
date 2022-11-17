@@ -1,0 +1,21 @@
+.tag {
+  display: flex;
+  width: fit-content;
+  height: 24px;
+  border-radius: 16px;
+
+  .tagName {
+    margin-left: 8px;
+    margin-right: 8px;
+
+    &.hasButton {
+      margin-right: 0px;
+    }
+  }
+  
+  .tagButton {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
+}

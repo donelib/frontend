@@ -1,0 +1,15 @@
+.Header {
+  width: auto;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+  border-bottom: 1px solid;
+  background-color: white;
+  margin-bottom: 16px;
+  img {
+    margin: auto 8px auto auto;
+    width: 32px;
+    height: 32px;
+  }
+}
