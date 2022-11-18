@@ -46,7 +46,7 @@ const Main = () => {
   return (
     <div className={styles.mainContainer}>
       <Header imgSrc={iconSetting}/>
-      <Calendar onChange={setSelectDate} tileClassName={() => {return "highlight"}} locale={"ko-kr"}/>
+      <Calendar value={selectDate} onChange={setSelectDate} tileClassName={() => {return "highlight"}} locale={"ko-kr"}/>
       <div className={styles.doneContainer}> 
         {/* list view -> doneInfo(+tagList) */}
         {/* select -> modify done */}
