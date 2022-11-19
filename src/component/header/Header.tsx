@@ -12,9 +12,10 @@ const Header = (props: HeaderProps) => {
   }
 
   return (
-    <div className={styles.Header}>
-        <img src={props.imgSrc} alt="tag settings" onClick={onClick} />
-    </div>
+    <header className={styles.Header}>
+      <div className={styles.title}>Donelib</div>
+      <img src={props.imgSrc} alt="tag settings" onClick={onClick} />
+    </header>
   );
 };
 

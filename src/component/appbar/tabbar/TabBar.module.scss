@@ -1,0 +1,17 @@
+.tabBar {
+  display: flex;
+  background-color: white;
+  height: 48px;
+
+  * {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid rgba(0, 0, 0, 0.20);
+  }
+
+  *:last-child {
+    border-right: none;
+  }
+}

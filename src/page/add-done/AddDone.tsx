@@ -2,13 +2,15 @@
 import { useEffect, useState, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../component/header/Header";
-import styles from "./AddDone.module.scss";
 import iconBack from "../../assets/icon_back.svg";
 import Button from "../../component/button/Button";
 import { getTagList } from "../../api/tag.repository";
 import TagInfo from "../../api/data/TagInfo";
 import Tag from "../../component/tag/Tag";
 import { postAddDone } from "../../api/done.repository";
+import styles from "./AddDone.module.scss";
+import ToolBar from "../../component/appbar/toolbar/ToolBar";
+import AppBar from "../../component/appbar/AppBar";
 
 const AddDone = () => {
   const [content, setContent] = useState("");
@@ -71,41 +73,43 @@ const AddDone = () => {
 
   return (
     <div className={styles.container}>
-        <Header imgSrc={iconBack} onClick={()=>{navigate(-1)}}/>
-        <div className={styles.fromContainer}>
+      <AppBar>
+        <ToolBar imgSrc={iconBack} onClick={()=>{navigate(-1)}}/>
+      </AppBar>
+      <div className={styles.formContainer}>
+        <div>
+          <div className={styles.label}>내용</div>
+          <textarea className={styles.contentArea} placeholder="내용" onChange={onChangeContent} value={content} />
+        </div>
+        <div>
+          <div className={styles.label}>태그</div>
           <div>
-            <div className={styles.label}>내용</div>
-            <textarea className={styles.contentArea} placeholder="내용" onChange={onChangeContent} value={content} />
-          </div>
-          <div>
-            <div className={styles.label}>태그</div>
-            <div>
-              <div>선택한 태그</div>
-              <div className={styles.tagContainer}>
-                {
-                  tagList.filter(tag => {
-                    return selectedTagSet.has(tag.id)
-                  }).map(tagInfo => {
-                    return <Tag {...tagInfo} key={tagInfo.id.toString()} onClick={tagOnClick(tagInfo, false)} hasDeleteButton={true}/>
-                  })
-                }
-              </div> 
-              <div>태그 목록</div>
-              <div className={styles.tagContainer}>
-                {
-                  tagList.filter(tag => {
-                    return !selectedTagSet.has(tag.id)
-                  }).map(tagInfo => {
-                    return <Tag {...tagInfo} key={tagInfo.id.toString()} onClick={tagOnClick(tagInfo, true)}/>
-                  })
-                }
-              </div>
+            <div>선택한 태그</div>
+            <div className={styles.tagContainer}>
+              {
+                tagList.filter(tag => {
+                  return selectedTagSet.has(tag.id)
+                }).map(tagInfo => {
+                  return <Tag {...tagInfo} key={tagInfo.id.toString()} onClick={tagOnClick(tagInfo, false)} hasDeleteButton={true}/>
+                })
+              }
+            </div>
+            <div>태그 목록</div>
+            <div className={styles.tagContainer}>
+              {
+                tagList.filter(tag => {
+                  return !selectedTagSet.has(tag.id)
+                }).map(tagInfo => {
+                  return <Tag {...tagInfo} key={tagInfo.id.toString()} onClick={tagOnClick(tagInfo, true)}/>
+                })
+              }
             </div>
           </div>
         </div>
-        <Button onClick={submitOnClick}>
+        <Button className={styles.submitButton} onClick={submitOnClick}>
           추가하기
         </Button>
+      </div>
     </div>
   );
 };

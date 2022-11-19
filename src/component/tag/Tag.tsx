@@ -13,7 +13,7 @@ const Tag = (props: TagProps) => {
     // color -> trans to hex code
     // text color -> by backgroundColor
     <div className={styles.tag} style={{backgroundColor:"aqua"}} onClick={props.onClick}> 
-      <div className={`${styles.tagName} ${props.hasDeleteButton ? styles.hasButton : undefined}`}>{props.name}</div>
+      <div className={`${styles.tagName} ${props.hasDeleteButton && styles.hasButton}`}>{props.name}</div>
       {
         props.hasDeleteButton && <img className={styles.tagButton} src={iconClose} alt="delete"/>
       }
