@@ -18,9 +18,8 @@ const Main = () => {
 
   return (
     <div className={styles.mainContainer}>
-      {/* <Header imgSrc={iconSetting} /> */}
       <AppBar>
-        <ToolBar imgSrc={iconSetting} />
+        <ToolBar />
         <TabBar>
           <Tab name={"Done"} isSelected={location.pathname === "/"} onClick={tabOnClick("/")}/>
           <Tab name={"Tag"} isSelected={location.pathname === "/tag-manage"} onClick={tabOnClick("/tag-manage")}/>

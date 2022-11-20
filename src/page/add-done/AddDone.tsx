@@ -1,7 +1,6 @@
 
 import { useEffect, useState, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../../component/header/Header";
 import iconBack from "../../assets/icon_back.svg";
 import Button from "../../component/button/Button";
 import { getTagList } from "../../api/tag.repository";

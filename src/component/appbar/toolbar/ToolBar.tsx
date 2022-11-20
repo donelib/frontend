@@ -9,7 +9,10 @@ const ToolBar = (props: ToolBarProps) => {
   return (
    <div className={styles.toolBar}>
       <div className={styles.title}>Donelib</div>
-      <img src={props.imgSrc} alt="tag settings" onClick={props.onClick} />
+      {
+        props.imgSrc ? <img src={props.imgSrc} alt="tag settings" onClick={props.onClick} />
+          :<div className={styles.space}/>
+      }
    </div>
   );
 };
