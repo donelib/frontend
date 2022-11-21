@@ -14,7 +14,7 @@ import AppBar from "../../component/appbar/AppBar";
 const AddDone = () => {
   const [content, setContent] = useState("");
   const [tagList, setTagList] = useState<TagInfo[]>([]);
-  const [selectedTagSet, setSelectedTagSet] = useState<Set<Number>>(new Set());
+  const [selectedTagSet, setSelectedTagSet] = useState<Set<number>>(new Set());
   const [isIdleAddDone, setIsIdleAddDone] = useState<boolean>(true);
   const navigate = useNavigate();
 

@@ -1,7 +1,7 @@
 export interface TagInfo {
-  id: Number;
-  name: String;
-  color: Number;
+  id: number;
+  name: string;
+  color: number;
 }
 
 export default TagInfo;

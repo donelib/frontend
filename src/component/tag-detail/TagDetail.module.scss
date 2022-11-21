@@ -1,0 +1,33 @@
+.tagDetail {
+  background-color: white;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-shadow: 0px 5px 10px -5px rgba(#000000, .1);
+
+  .tagExample {
+    margin: auto;
+  }
+
+  .tagDetailBox {
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+
+    .tagInfo {
+      margin: auto 0px;
+    }
+
+    .actionBox {
+      display: flex;
+      justify-content: space-between;
+
+      .actionButton {
+        height: auto;
+        padding: 8px;
+        margin: 0px 0px 0px 8px;
+        border-radius: 8px;
+      }
+    }
+  }
+}

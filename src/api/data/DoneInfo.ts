@@ -1,8 +1,8 @@
 import TagInfo from "./TagInfo";
 
 export interface DoneInfo {
-  id: Number;
-  name: String;
+  id: number;
+  name: string;
   tags: TagInfo[];
   doneAt: Date;
 }
