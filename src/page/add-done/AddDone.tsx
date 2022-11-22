@@ -1,15 +1,14 @@
 
 import { useEffect, useState, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import iconBack from "../../assets/icon_back.svg";
 import Button from "../../component/button/Button";
 import { getTagList } from "../../api/tag.repository";
 import TagInfo from "../../api/data/TagInfo";
 import Tag from "../../component/tag/Tag";
 import { postAddDone } from "../../api/done.repository";
 import styles from "./AddDone.module.scss";
-import ToolBar from "../../component/appbar/toolbar/ToolBar";
 import AppBar from "../../component/appbar/AppBar";
+import BackButtonToolBar from "../../component/appbar/toolbar/BackButtonToolBar";
 
 const AddDone = () => {
   const [content, setContent] = useState("");
@@ -73,7 +72,7 @@ const AddDone = () => {
   return (
     <div className={styles.container}>
       <AppBar>
-        <ToolBar imgSrc={iconBack} onClick={()=>{navigate(-1)}}/>
+        <BackButtonToolBar/>
       </AppBar>
       <div className={styles.formContainer}>
         <div>
