@@ -1,3 +1,4 @@
+import { numToHexColor } from "../../utils/Color";
 import Button from "../button/Button";
 import Tag from "../tag/Tag";
 import styles from "./TagDetail.module.scss";
@@ -34,7 +35,7 @@ const TagDetail = (props: TagDetailProps) => {
             태그명: {props.name}
           </div>
           <div className={styles.tagColor}>
-            색상: #{props.color.toString()}
+            색상: {numToHexColor(props.color)}
           </div>
         </div>
         <div className={styles.actionBox}>
