@@ -1,5 +1,4 @@
 import styles from "./Main.module.scss";
-import iconSetting from "../../assets/icon_settings.svg";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import AppBar from "../../component/appbar/AppBar";
 import ToolBar from "../../component/appbar/toolbar/ToolBar";
