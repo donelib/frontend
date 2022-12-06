@@ -1,27 +1,22 @@
-import { useState, ChangeEvent } from"react";
-import { CirclePicker } from "react-color";
+import { useState } from"react";
 import { useNavigate } from "react-router-dom";
 import { postAddTag } from "../../api/tag.repository";
 import AppBar from "../../component/appbar/AppBar";
 import BackButtonToolBar from "../../component/appbar/toolbar/BackButtonToolBar";
 import Button from "../../component/button/Button";
-import Tag from "../../component/tag/Tag";
+import TagForm, { defualtTagFormData, TagFormData } from "../../component/tag-form/TagForm";
 import { hexColorToNum } from "../../utils/Color";
 import styles from "./AddTag.module.scss";
 
 const AddTag = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [color, setColor] = useState("#f44336");
-  const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
+  const [tagFormData, setTagFormData] = useState<TagFormData>(defualtTagFormData);
   const [isIdleAddTag, setIsIdleAddTag] = useState<boolean>(true);
 
   const addTag = async () => {
     try {
       setIsIdleAddTag(false);
-      const data = await postAddTag({name: name, color: hexColorToNum(color)});
+      const data = await postAddTag({name: tagFormData.name, color: hexColorToNum(tagFormData.color)});
       console.log(data);
       navigate("/tag-manage");
     } catch (error) {
@@ -32,7 +27,7 @@ const AddTag = () => {
   };
 
   const submitOnClick = () => {
-    if (name.length === 0) {
+    if (tagFormData.name.length === 0) {
       alert("태그명을 입력해주세요");
       return;
     }
@@ -48,20 +43,10 @@ const AddTag = () => {
       <AppBar>
         <BackButtonToolBar/>
       </AppBar>
-      <div className={styles.formContainer}>
-        <div>
-          <div className={styles.label}>태그명</div>
-          <input className={styles.nameArea} placeholder="태그명" onChange={onChangeName} value={name} />
-          <div className={styles.label}>태그 색상</div>
-          <CirclePicker width="auto" circleSize={32} circleSpacing={16} onChange={(color) => {setColor(color.hex)}} color={color} />
-        </div>
-        <div className={styles.example}>
-          <Tag name={name} color={hexColorToNum(color)}/>
-        </div>
-        <Button className={styles.submitButton} onClick={submitOnClick}>
-          추가하기
-        </Button>
-      </div>
+      <TagForm tag={tagFormData} setTag={setTagFormData}/>
+      <Button className={styles.submitButton} onClick={submitOnClick}>
+        추가하기
+      </Button>
     </div>
   );
 };
