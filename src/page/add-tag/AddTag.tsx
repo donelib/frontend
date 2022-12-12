@@ -19,7 +19,7 @@ const AddTag = () => {
       setIsIdleAddTag(false);
       const data = await postAddTag({name: name, color: hexColorToNum(color)});
       console.log(data);
-      navigate("/tag-manage");
+      navigate("/tag");
     } catch (error) {
       alert(error);
     } finally {

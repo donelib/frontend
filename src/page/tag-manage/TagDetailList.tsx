@@ -8,7 +8,7 @@ const TagDetailList = ({ tagList }: {tagList: TagInfo[]}) => {
   const navigate = useNavigate();
 
   const onClick = useCallback((tagId: number) => {
-    navigate("/modify-tag/" + tagId);
+    navigate("/tag/modify/" + tagId);
   }, [navigate]);
 
   return (

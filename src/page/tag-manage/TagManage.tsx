@@ -21,7 +21,7 @@ const TagManage = () => {
   return (
     <div> 
       <TagDetailList tagList={tagList} /> 
-      <Button onClick={() => {navigate("/add-tag")}}>
+      <Button onClick={() => {navigate("/tag/add")}}>
         태그 추가하기
       </Button>
     </div>

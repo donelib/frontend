@@ -19,7 +19,7 @@ const ModifyTag = () => {
   const formRef = useRef<TagFormData>(defualtTagFormData);
 
   const navigateToTagManage = () => {
-    navigate("/tag-manage");
+    navigate("/tag");
   }
 
   const showDeleteModal = () => {

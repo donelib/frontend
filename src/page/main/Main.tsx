@@ -21,7 +21,7 @@ const Main = () => {
         <ToolBar />
         <TabBar>
           <Tab name={"Done"} isSelected={location.pathname === "/"} onClick={tabOnClick("/")}/>
-          <Tab name={"Tag"} isSelected={location.pathname === "/tag-manage"} onClick={tabOnClick("/tag-manage")}/>
+          <Tab name={"Tag"} isSelected={location.pathname === "/tag"} onClick={tabOnClick("/tag")}/>
         </TabBar>
       </AppBar>
       {

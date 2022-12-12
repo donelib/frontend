@@ -37,7 +37,7 @@ const DoneList = () => {
   }, [fetchDoneList, selectDate]);
 
   const addButtonOnClick = () => {
-    navigate("add-done");
+    navigate("done/add");
   }
 
   return (

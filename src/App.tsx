@@ -16,11 +16,11 @@ const App = () => {
         <Route path="/login" element={<Login />}/>
         <Route path="/" element={<Main />}>
           <Route path="/" element={<DoneList/>}/>
-          <Route path="/tag-manage" element={<TagManage/>}/>
+          <Route path="/tag" element={<TagManage/>}/>
         </Route>
-        <Route path="/modify-tag/:tagId" element={<ModifyTag />}/>
-        <Route path="/add-done" element={<AddDone />}/>
-        <Route path="/add-tag" element={<AddTag />}/>
+        <Route path="/tag/modify/:tagId" element={<ModifyTag />}/>
+        <Route path="/done/add" element={<AddDone />}/>
+        <Route path="/tag/add" element={<AddTag />}/>
         <Route path="*" element={<Navigate to="/"/>}/>
       </Routes>
     </BrowserRouter>
