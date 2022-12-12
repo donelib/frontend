@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import React ,{ ReactElement } from "react";
 import TabBar from "./tabbar/TabBar";
 import ToolBar from "./toolbar/ToolBar";
 import styles from "./AppBar.module.scss";
@@ -19,4 +19,4 @@ const AppBar = (props: AppBarProps) => {
   );
 };
 
-export default AppBar;
+export default React.memo(AppBar);

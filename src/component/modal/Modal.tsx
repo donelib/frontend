@@ -5,13 +5,12 @@ interface ModalProps {
   isShow: boolean;
   modal?: ReactNode;
   children: ReactNode;
+  onOutClick?: ()=>void;
 }
 
 const Modal = (props: ModalProps) => {
-  // isShow 
-  // onOutClick
   return (
-    <div className={`${styles.modalBackground} ${!props.isShow && styles.modalNone}`}>
+    <div className={`${styles.modalBackground} ${!props.isShow && styles.modalNone}`} onClick={props.onOutClick}>
       {
         props.modal ? props.modal 
         : <div className={styles.contentContainer}>

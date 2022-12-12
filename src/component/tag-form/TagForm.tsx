@@ -1,14 +1,11 @@
-import { ChangeEvent, useState } from "react";
+import React, { useCallback, ChangeEvent, useRef, useState, useEffect, MutableRefObject } from "react";
 import { CirclePicker, ColorResult } from "react-color";
-import internal from "stream";
-import TagInfo from "../../api/data/TagInfo";
 import { hexColorToNum } from "../../utils/Color";
 import Tag from "../tag/Tag";
 import styles from "./TagForm.module.scss";
 
 interface TagFormProps {
-  tag: TagFormData
-  setTag: React.Dispatch<React.SetStateAction<TagFormData>>
+  formRef: MutableRefObject<TagFormData>;
 }
 
 export interface TagFormData {
@@ -21,14 +18,20 @@ export const defualtTagFormData = {
   color: "#f44336"
 }
 
-const TagForm = ({tag, setTag}: TagFormProps) => {
-  
-  const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
+const TagForm = ({formRef}: TagFormProps) => {
+  const [tag, setTag] = useState<TagFormData>(formRef.current);
+
+  useEffect(() => {
+    formRef.current = tag;
+  }, [formRef, tag]);
+
+  const onChangeName = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setTag(oldTag => ({...oldTag, name: e.target.value}));
-  };
-  const onChangeColor = (color: ColorResult) => {
+  }, [setTag]);
+
+  const onChangeColor = useCallback((color: ColorResult) => {
     setTag(oldTag => ({...oldTag, color: color.hex}))
-  }
+  }, [setTag]);
 
   return (
     <div className={styles.formContainer}>
@@ -45,4 +48,4 @@ const TagForm = ({tag, setTag}: TagFormProps) => {
   );
 };
 
-export default TagForm;
+export default React.memo(TagForm);
