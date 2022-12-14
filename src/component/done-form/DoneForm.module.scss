@@ -1,0 +1,39 @@
+.formContainer {
+  padding: 16px;
+  margin: 0px 16px;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.05);
+  border-radius: 16px;
+}
+
+.label {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.contentArea {
+  min-height: 1em;
+  width: calc(100% - 16px);
+  min-width: calc(100% - 16px);
+  max-width: calc(100% - 16px);
+  padding: 8px;
+  margin-bottom: 12px;
+}
+
+.tagContainer {
+  min-height: 24px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid;
+  border-color: #888888;
+  border-radius: 8px;
+  padding: 8px;
+  gap: 8px;
+}
+
+.submitButton {
+  margin: 24px 0 0 0;
+  box-shadow: none;
+}

@@ -7,6 +7,7 @@ import Login from "./page/login/Login";
 import Main from "./page/main/Main";
 import ModifyTag from "./page/modify-tag/ModifyTag";
 import TagManage from "./page/tag-manage/TagManage";
+import ModifyDone from "./page/modify-done/ModifyDone";
 
 const App = () => {
   return (
@@ -18,9 +19,10 @@ const App = () => {
           <Route path="/" element={<DoneList/>}/>
           <Route path="/tag" element={<TagManage/>}/>
         </Route>
+        <Route path="/tag/add" element={<AddTag />}/>
         <Route path="/tag/modify/:tagId" element={<ModifyTag />}/>
         <Route path="/done/add" element={<AddDone />}/>
-        <Route path="/tag/add" element={<AddTag />}/>
+        <Route path="/done/modify/:doneId" element={<ModifyDone />}/>
         <Route path="*" element={<Navigate to="/"/>}/>
       </Routes>
     </BrowserRouter>

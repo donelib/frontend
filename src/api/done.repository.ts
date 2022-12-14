@@ -34,3 +34,18 @@ export const postAddDone = async (name: string, doneAt: Date, tagList: number[])
     const res = await api.post("/api/done", body); 
     return res.data;
 }
+
+export const deleteDone = async (id: number) => {
+    return api.delete(`/api/done` + id);
+}
+
+export interface PutDoneRequest {
+    name: string;
+    tagList: number[];
+    doneAt: Date;
+} 
+
+export const putDone = async (id: number, body: PutDoneRequest) => {
+    const res =  await api.put(`/api/done/` + id, body);
+    return res.data;
+}
