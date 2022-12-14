@@ -1,4 +1,4 @@
-import React, { useCallback, ChangeEvent, useRef, useState, useEffect, MutableRefObject } from "react";
+import React, { useCallback, ChangeEvent, useState, useEffect, MutableRefObject } from "react";
 import { CirclePicker, ColorResult } from "react-color";
 import { hexColorToNum } from "../../utils/Color";
 import Tag from "../tag/Tag";
@@ -13,7 +13,7 @@ export interface TagFormData {
   color: string;
 }
 
-export const defualtTagFormData = {
+export const defaultTagFormData = {
   name: "",
   color: "#f44336"
 }

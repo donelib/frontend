@@ -4,14 +4,14 @@ import { postAddTag } from "../../api/tag.repository";
 import AppBar from "../../component/appbar/AppBar";
 import BackButtonToolBar from "../../component/appbar/toolbar/BackButtonToolBar";
 import Button from "../../component/button/Button";
-import TagForm, { defualtTagFormData } from "../../component/tag-form/TagForm";
+import TagForm, { defaultTagFormData } from "../../component/tag-form/TagForm";
 import { hexColorToNum } from "../../utils/Color";
 import styles from "./AddTag.module.scss";
 
 const AddTag = () => {
   const navigate = useNavigate();
   const [isIdleAddTag, setIsIdleAddTag] = useState<boolean>(true);
-  const formRef = useRef(defualtTagFormData);
+  const formRef = useRef(defaultTagFormData);
 
   const addTag = useCallback(async () => {
     const {name, color} = formRef.current;

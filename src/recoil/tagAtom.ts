@@ -1,5 +1,5 @@
 import { atom, selector, selectorFamily } from "recoil";
-import { defualtTagFormData } from "../component/tag-form/TagForm";
+import { defaultTagFormData } from "../component/tag-form/TagForm";
 import { TagInfo } from "../api/data/TagInfo";
 import { numToHexColor } from "../utils/Color";
 import { getTagList } from "../api/tag.repository";
@@ -20,7 +20,7 @@ export const getTagByIdToFormData = selectorFamily({
     const tagList = get(tagListState);
     const tag = tagList.find(tag => tag.id === tagId);
     if (tag === undefined) 
-      return defualtTagFormData;
+      return defaultTagFormData;
     const color = numToHexColor(tag.color);
     return {
       name: tag.name,
