@@ -1,9 +1,8 @@
 import Tag from "../tag/Tag";
 import styles from "./DoneForm.module.scss";
-import { ChangeEvent, MutableRefObject, useCallback, useEffect, useMemo, useState } from "react";
-import { useRecoilValueLoadable } from "recoil";
-import { tagListState } from "../../recoil/tagAtom";
+import { ChangeEvent, MutableRefObject, useCallback, useEffect, useState } from "react";
 import TagInfo from "../../api/data/TagInfo";
+import { useTagList } from "./../../recoil/tagAtom";
 
 export interface DoneFormData {
   name: string;
@@ -22,10 +21,7 @@ interface DoneFormProps {
 }
 
 const DoneForm = ({formRef}: DoneFormProps) => {
-  const tagListLoadable = useRecoilValueLoadable(tagListState);
-  const tagList = useMemo(() => {
-    return tagListLoadable?.state === "hasValue" ? tagListLoadable.contents : [];
-  }, [tagListLoadable]);
+  const tagList = useTagList();
   const [done, setDone] = useState<DoneFormData>(formRef.current)
   
   useEffect(() => {
