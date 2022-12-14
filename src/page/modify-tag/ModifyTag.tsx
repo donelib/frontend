@@ -7,12 +7,13 @@ import AppBar from "../../component/appbar/AppBar";
 import { useRef, useState } from "react";
 import { TagFormData } from "./../../component/tag-form/TagForm";
 import * as tagApi from "../../api/tag.repository";
-import {useRecoilValue} from "recoil";
-import { getTagByIdToFormData } from "../../recoil/tagAtom";
+import {useRecoilValue, useSetRecoilState} from "recoil";
+import { getTagByIdToFormData, tagListState } from "../../recoil/tagAtom";
 import { hexColorToNum } from "../../utils/Color";
 
 const ModifyTag = () => {
   const navigate = useNavigate();  
+  const setTagList = useSetRecoilState(tagListState);
   const [isShowDeleteModal, setShowDeleteModal] = useState(false)
   const { tagId } = useParams();
   const defualtTagFormData = useRecoilValue(getTagByIdToFormData(Number(tagId)));
@@ -41,7 +42,15 @@ const ModifyTag = () => {
         alert("태그명을 입력해주세요");
         return;
       }
-      await tagApi.putTagById(Number(tagId), body);
+      const updatedTag = await tagApi.putTagById(Number(tagId), body);
+      setTagList(prev => 
+         prev.map(tag => {
+          if (tag.id === Number(tagId))
+            return updatedTag;
+          else 
+            return tag;
+         })
+      );
       navigateToTagManage();
     };
     func();
@@ -49,6 +58,7 @@ const ModifyTag = () => {
 
   const deleteTag = async () => {
     await tagApi.deleteTag(Number(tagId));
+    setTagList(prev => prev.filter(tag => tag.id !== Number(tagId)));
   }
 
   return (

@@ -2,10 +2,10 @@ import TagDetail from "./../../component/tag-detail/TagDetail";
 import styles from "./TagDetailList.module.scss";
 import { useNavigate } from "react-router-dom";
 import React, { useCallback } from "react";
-import { useTagList } from "./../../recoil/tagAtom";
+import { useTagListValue } from "./../../recoil/tagAtom";
 
 const TagDetailList = () => {
-  const tagList = useTagList ();
+  const tagList = useTagListValue();
   const navigate = useNavigate();
 
   const onClick = useCallback((tagId: number) => {

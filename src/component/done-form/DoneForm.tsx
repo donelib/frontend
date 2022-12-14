@@ -2,7 +2,7 @@ import Tag from "../tag/Tag";
 import styles from "./DoneForm.module.scss";
 import { ChangeEvent, MutableRefObject, useCallback, useEffect, useState } from "react";
 import TagInfo from "../../api/data/TagInfo";
-import { useTagList } from "./../../recoil/tagAtom";
+import { useTagListValue } from "./../../recoil/tagAtom";
 
 export interface DoneFormData {
   name: string;
@@ -21,7 +21,7 @@ interface DoneFormProps {
 }
 
 const DoneForm = ({formRef}: DoneFormProps) => {
-  const tagList = useTagList();
+  const tagList = useTagListValue();
   const [done, setDone] = useState<DoneFormData>(formRef.current)
   
   useEffect(() => {

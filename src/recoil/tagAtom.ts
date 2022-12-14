@@ -1,4 +1,4 @@
-import { atom, selector, selectorFamily, useRecoilValueLoadable } from "recoil";
+import { atom, selector, selectorFamily, SetterOrUpdater, useRecoilValueLoadable, useSetRecoilState } from "recoil";
 import { defaultTagFormData } from "../component/tag-form/TagForm";
 import { TagInfo } from "../api/data/TagInfo";
 import { numToHexColor } from "../utils/Color";
@@ -30,10 +30,16 @@ export const getTagByIdToFormData = selectorFamily({
   },
 });
 
-export const useTagList = () => {
+export const useTagList: () => [TagInfo[], SetterOrUpdater<TagInfo[]>] = () => {
+  const setTagList = useSetRecoilState(tagListState);
   const tagListLoadable = useRecoilValueLoadable(tagListState);
   const tagList = useMemo(() => {
     return tagListLoadable?.state === "hasValue" ? tagListLoadable.contents : [];
   }, [tagListLoadable]);
+  return [tagList, setTagList];
+}
+
+export const useTagListValue = () => {
+  const [tagList] = useTagList();
   return tagList;
 }
