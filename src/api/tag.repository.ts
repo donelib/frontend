@@ -1,13 +1,13 @@
-import axios from "axios";
+import { api } from "./apiConfig";
 import TagInfo from "./data/TagInfo";
 
 export const getTagList = async () : Promise<TagInfo[]> => {
-    const res = await axios.get(`/api/tag`);
+    const res = await api.get(`/api/tag`);
     return res.data;
 }
 
 export const deleteTag = async (id: number) => {
-    await axios.delete(`/api/tag/${id}`);
+    await api.delete(`/api/tag/${id}`);
 }
 
 export interface AddTagRequest {
@@ -16,7 +16,7 @@ export interface AddTagRequest {
 } 
 
 export const postAddTag = async (body: AddTagRequest) => {
-    const res = await axios.post(`/api/tag`, body);
+    const res = await api.post(`/api/tag`, body);
     return res.data;
 }
 
@@ -26,6 +26,6 @@ export interface PutTagRequest {
 } 
 
 export const putTagById = async (id: number, body: PutTagRequest) => {
-    const res = await axios.put(`/api/tag/${id}`, body);
+    const res = await api.put(`/api/tag/${id}`, body);
     return res.data;
 }

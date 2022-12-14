@@ -1,11 +1,17 @@
-import { atom, selectorFamily } from "recoil";
+import { atom, selector, selectorFamily } from "recoil";
 import { defualtTagFormData } from "../component/tag-form/TagForm";
 import { TagInfo } from "../api/data/TagInfo";
 import { numToHexColor } from "../utils/Color";
+import { getTagList } from "../api/tag.repository";
 
 export const tagListState = atom<Array<TagInfo>>({
   key: "tagListState",
-  default: [],
+  default: selector({
+    key: 'CurrentUserID/Default',
+    get: () => {
+      return getTagList();
+    },
+  }),
 });
 
 export const getTagByIdToFormData = selectorFamily({

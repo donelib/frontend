@@ -1,4 +1,4 @@
-import axios from "axios";
+import { api } from "./apiConfig";
 import { DoneInfo } from "./data/DoneInfo";
 
 class GetDoneListRequest {
@@ -12,7 +12,7 @@ class GetDoneListRequest {
 }
 
 export const getDoneList = async (from: Date, to: Date) : Promise<DoneInfo[]> => {
-    const res = await axios.get("/api/done",{
+    const res = await api.get("/api/done",{
         params: new GetDoneListRequest(from, to)
     });
     return res.data;
@@ -31,6 +31,6 @@ class AddDoneRequest {
 
 export const postAddDone = async (name: string, doneAt: Date, tagList: number[]) : Promise<DoneInfo> => {
     const body = new AddDoneRequest(name, doneAt, tagList);
-    const res = await axios.post("/api/done", body); 
+    const res = await api.post("/api/done", body); 
     return res.data;
 }

@@ -1,10 +1,15 @@
 import TagDetail from "./../../component/tag-detail/TagDetail";
 import styles from "./TagDetailList.module.scss";
 import { useNavigate } from "react-router-dom";
-import React, { useCallback } from "react";
-import TagInfo from "../../api/data/TagInfo";
+import React, { useCallback, useMemo } from "react";
+import { useRecoilValueLoadable } from "recoil";
+import { tagListState } from "./../../recoil/tagAtom";
 
-const TagDetailList = ({ tagList }: {tagList: TagInfo[]}) => {
+const TagDetailList = () => {
+  const tagListLoadable = useRecoilValueLoadable(tagListState);
+  const tagList = useMemo(() => {
+    return tagListLoadable?.state === "hasValue" ? tagListLoadable.contents : [];
+  }, [tagListLoadable]);
   const navigate = useNavigate();
 
   const onClick = useCallback((tagId: number) => {
