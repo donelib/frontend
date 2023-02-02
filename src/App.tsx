@@ -1,33 +1,37 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import styles from "./App.module.scss";
 import AddDone from "./page/add-done/AddDone";
 import AddTag from "./page/add-tag/AddTag";
-import DoneList from "./page/done-list/DoneList";
 import Login from "./page/login/Login";
 import Main from "./page/main/Main";
 import ModifyTag from "./page/modify-tag/ModifyTag";
 import TagManage from "./page/tag-manage/TagManage";
 import ModifyDone from "./page/modify-done/ModifyDone";
+import styled from "styled-components";
+
+const Root = styled.div`
+  width: 100vw;
+  min-width: 300px;
+  min-height: 100vh;
+  margin: 0 auto 0 auto;
+`;
 
 const App = () => {
   return (
-    <div className={styles.container}>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />}/>
-        <Route path="/" element={<Main />}>
-          <Route path="/" element={<DoneList/>}/>
-          <Route path="/tag" element={<TagManage/>}/>
-        </Route>
-        <Route path="/tag/add" element={<AddTag />}/>
-        <Route path="/tag/modify/:tagId" element={<ModifyTag />}/>
-        <Route path="/done/add" element={<AddDone />}/>
-        <Route path="/done/modify/:doneId" element={<ModifyDone />}/>
-        <Route path="*" element={<Navigate to="/"/>}/>
-      </Routes>
-    </BrowserRouter>
-    </div>
+    <Root>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Main />} />
+          <Route path="/tag" element={<TagManage />} />
+          <Route path="/tag/add" element={<AddTag />} />
+          <Route path="/tag/modify/:tagId" element={<ModifyTag />} />
+          <Route path="/done/add" element={<AddDone />} />
+          <Route path="/done/modify/:doneId" element={<ModifyDone />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </BrowserRouter>
+    </Root>
   );
-}
+};
 
 export default App;

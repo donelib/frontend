@@ -1,36 +1,43 @@
-import TagInfo from "../../api/data/TagInfo";
 import Tag from "../tag/Tag";
-import styles from "./Done.module.scss";
+import { DoneProps } from "./Done.type";
+import styled from "styled-components";
 
-export interface DoneProps {
-  id: number;
-  name: string;
-  tags: TagInfo[];
-  doneAt: Date;
-  onClick?: (id: number) => void;
-}
+const Root = styled.li`
+  margin: 12px 0px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0px 10px 20px -10px rgba(#000000, 0.1);
+`;
 
-const Done = (props:  DoneProps) => {
+const DoneContent = styled.div`
+  font-size: 18px;
+`;
 
+const TagContainer = styled.div`
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+`;
+
+const Done = (props: DoneProps) => {
   const onClick = () => {
-    if (props.onClick)
-      props.onClick(props.id);
-  }
+    if (props.onClick) props.onClick(props.id);
+  };
 
   return (
-    <div className={styles.done} onClick={onClick}>
-      <div className={styles.doneContent}>{props.name}</div>
-      {
-        props.tags &&
-        <div className={styles.tagContainer}> 
-        {
-          props.tags.map((tag) => {
-            return <Tag {...tag} hasDeleteButton={false} key={tag.id.toString()}/>
-          })
-        }
-        </div>
-      }
-    </div>
+    <Root onClick={onClick}>
+      <DoneContent>{props.name}</DoneContent>
+      {props.tags && props.tags.length !== 0 && (
+        <TagContainer>
+          {props.tags.map((tag) => {
+            return (
+              <Tag {...tag} hasDeleteButton={false} key={tag.id.toString()} />
+            );
+          })}
+        </TagContainer>
+      )}
+    </Root>
   );
 };
 
