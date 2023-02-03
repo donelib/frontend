@@ -1,15 +1,12 @@
-import { AppBar } from "@mui/material";
-import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
-import Toolbar from "@mui/material/Toolbar";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
-import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import DoneList from "./../../component/done/DoneList";
+import DefaultAppBar from "../../component/appbar/DefaultAppBar";
 
 const Root = styled.div`
   display: flex;
@@ -29,52 +26,11 @@ const Container = styled(Box)`
 `;
 
 const Main = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
   const [date, setDate] = useState(Date.now());
-  const tabOnClick = (destination: string) => {
-    return () => {
-      navigate(destination);
-    };
-  };
 
   return (
     <Root>
-      <AppBar
-        position="static"
-        color="default"
-        elevation={0}
-        sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
-      >
-        <Toolbar sx={{ flexWrap: "wrap", justifyContent: "flex-end" }}>
-          <nav>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="#"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Search
-            </Link>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="/tag"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Tags
-            </Link>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="#"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Settings
-            </Link>
-          </nav>
-        </Toolbar>
-      </AppBar>
+      <DefaultAppBar />
       <Container>
         {/* Calendar view */}
         <LocalizationProvider dateAdapter={AdapterMoment}>

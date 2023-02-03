@@ -1,8 +1,6 @@
-import { useState, useCallback, useRef } from"react";
+import { useState, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { postAddTag } from "../../api/tag.repository";
-import AppBar from "../../component/appbar/AppBar";
-import BackButtonToolBar from "../../component/appbar/toolbar/BackButtonToolBar";
 import Button from "../../component/button/Button";
 import TagForm, { defaultTagFormData } from "../../component/tag-form/TagForm";
 import { hexColorToNum } from "../../utils/Color";
@@ -17,12 +15,15 @@ const AddTag = () => {
   const setTagList = useSetRecoilState(tagListState);
 
   const addTag = useCallback(async () => {
-    const {name, color} = formRef.current;
+    const { name, color } = formRef.current;
     try {
       setIsIdleAddTag(false);
-      const data = await postAddTag({name: name, color: hexColorToNum(color)});
+      const data = await postAddTag({
+        name: name,
+        color: hexColorToNum(color),
+      });
       console.log(data);
-      setTagList(prev => [...prev, data]);
+      setTagList((prev) => [...prev, data]);
       navigate("/tag");
     } catch (error) {
       alert(error);
@@ -45,9 +46,6 @@ const AddTag = () => {
 
   return (
     <div>
-      <AppBar>
-        <BackButtonToolBar/>
-      </AppBar>
       <TagForm formRef={formRef} />
       <Button className={styles.submitButton} onClick={submitOnClick}>
         추가하기
