@@ -1,12 +1,33 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { modifyDoneState } from "./../../recoil/doneAtom";
-import DoneForm, { DoneFormData } from "./../../component/done-form/DoneForm";
+import DoneForm from "../../component/DoneForm/DoneForm";
 import { useEffect, useRef, useState } from "react";
 import { DoneInfo } from "./../../api/data/DoneInfo";
-import Button from "./../../component/button/Button";
 import ConfirmModal from "./../../component/modal/confirm-modal/ConfirmModal";
 import * as doneApi from "../../api/done.repository";
+import { DoneFormData } from "../../component/DoneForm/DoneForm.type";
+import BackButtonAppBar from "../../component/appbar/BackButtonAppBar";
+import styled from "styled-components";
+import Box from "@mui/material/Box";
+import { Button } from "@mui/material";
+
+const Root = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Container = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
+  margin: 0 auto;
+  padding: 24px 0;
+  @media (max-width: 700px) {
+    min-width: 0px;
+    margin: 0;
+  }
+`;
 
 const doneToDoneFormData = (done: DoneInfo) => {
   return {
@@ -63,20 +84,31 @@ const ModifyDone = () => {
   };
 
   return (
-    <div>
-      <DoneForm formRef={formRef} />
-      <Button onClick={showDeleteModal}>삭제하기</Button>
-      <Button onClick={updateOnClick}>수정완료</Button>
-      <ConfirmModal
-        isShow={isShowDeleteModal}
-        title={"Done 삭제"}
-        description={"정말 삭제하시겠습니까?"}
-        positiveOnClick={deleteOnClick}
-        negativeOnClick={() => {
-          setShowDeleteModal(false);
-        }}
-      />
-    </div>
+    <Root>
+      <BackButtonAppBar />
+      <Container>
+        <DoneForm formRef={formRef} />
+        <Button
+          variant="outlined"
+          sx={{ mx: 3, my: 1.5 }}
+          onClick={showDeleteModal}
+        >
+          삭제하기
+        </Button>
+        <Button variant="outlined" sx={{ mx: 3 }} onClick={updateOnClick}>
+          수정완료
+        </Button>
+        <ConfirmModal
+          isShow={isShowDeleteModal}
+          title={"Done 삭제"}
+          description={"정말 삭제하시겠습니까?"}
+          positiveOnClick={deleteOnClick}
+          negativeOnClick={() => {
+            setShowDeleteModal(false);
+          }}
+        />
+      </Container>
+    </Root>
   );
 };
 

@@ -1,13 +1,30 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../../component/button/Button";
 import { postAddDone } from "../../api/done.repository";
-import styles from "./AddDone.module.scss";
-import DoneForm, {
-  defaultDoneFormData,
-} from "../../component/done-form/DoneForm";
+import DoneForm from "../../component/DoneForm";
+import BackButtonAppBar from "../../component/appbar/BackButtonAppBar";
+import styled from "styled-components";
+import { Box, Button } from "@mui/material";
+import { defaultDoneFormData } from "../../component/DoneForm/DoneForm.type";
 
-const AddDone = () => {
+const Container = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
+  margin: 0 auto;
+  padding: 24px 0;
+  @media (max-width: 700px) {
+    min-width: 0px;
+    margin: 0;
+  }
+`;
+
+const Root = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+function AddDone() {
   const formRef = useRef(defaultDoneFormData);
   const [isIdleAddDone, setIsIdleAddDone] = useState<boolean>(true);
   const navigate = useNavigate();
@@ -42,13 +59,20 @@ const AddDone = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <DoneForm formRef={formRef} />
-      <Button className={styles.submitButton} onClick={submitOnClick}>
-        추가하기
-      </Button>
-    </div>
+    <Root>
+      <BackButtonAppBar />
+      <Container>
+        <DoneForm formRef={formRef} />
+        <Button
+          variant="outlined"
+          sx={{ mx: 3, my: 1.5 }}
+          onClick={submitOnClick}
+        >
+          추가하기
+        </Button>
+      </Container>
+    </Root>
   );
-};
+}
 
 export default AddDone;

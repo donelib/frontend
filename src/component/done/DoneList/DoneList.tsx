@@ -71,7 +71,7 @@ function DoneList({ date }: TDoneListProps) {
         variant="outlined"
         onClick={addButtonOnClick}
       >
-        add done
+        Done 추가하기
       </Button>
     </Root>
   );

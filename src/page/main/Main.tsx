@@ -5,8 +5,8 @@ import styled from "styled-components";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { useState } from "react";
 import Box from "@mui/material/Box";
-import DoneList from "./../../component/done/DoneList";
 import DefaultAppBar from "../../component/appbar/DefaultAppBar";
+import DoneList from "../../component/Done/DoneList";
 
 const Root = styled.div`
   display: flex;
