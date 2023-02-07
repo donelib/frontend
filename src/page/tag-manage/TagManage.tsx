@@ -22,6 +22,10 @@ const Container = styled(Box)`
   }
 `;
 
+const Title = styled.h2`
+  margin: 0px 24px 16px 24px;
+`;
+
 function TagManage() {
   const navigate = useNavigate();
 
@@ -33,6 +37,7 @@ function TagManage() {
     <Root>
       <BackButtonAppBar />
       <Container>
+        <Title>Tag</Title>
         <TagDetailList />
         <Button
           color="primary"
