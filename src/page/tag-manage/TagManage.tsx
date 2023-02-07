@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import TagDetailList from "./TagDetailList";
-import BackButtonAppBar from "../../component/appbar/BackButtonAppBar";
 import styled from "styled-components";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import DefaultAppBar from "./../../component/appbar/index";
 
 const Root = styled.div`
   display: flex;
@@ -35,7 +35,7 @@ function TagManage() {
 
   return (
     <Root>
-      <BackButtonAppBar />
+      <DefaultAppBar />
       <Container>
         <Title>Tag</Title>
         <TagDetailList />
