@@ -4,13 +4,13 @@ import { modifyDoneState } from "./../../recoil/doneAtom";
 import DoneForm from "../../component/DoneForm/DoneForm";
 import { useEffect, useRef, useState } from "react";
 import { DoneInfo } from "./../../api/data/DoneInfo";
-import ConfirmModal from "./../../component/modal/confirm-modal/ConfirmModal";
 import * as doneApi from "../../api/done.repository";
 import { DoneFormData } from "../../component/DoneForm/DoneForm.type";
 import BackButtonAppBar from "../../component/appbar/BackButtonAppBar";
 import styled from "styled-components";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
+import ConfirmDialog from "../../component/Dialog/ConfirmDialog";
 
 const Root = styled.div`
   display: flex;
@@ -98,7 +98,7 @@ const ModifyDone = () => {
         <Button variant="outlined" sx={{ mx: 3 }} onClick={updateOnClick}>
           수정완료
         </Button>
-        <ConfirmModal
+        <ConfirmDialog
           isShow={isShowDeleteModal}
           title={"Done 삭제"}
           description={"정말 삭제하시겠습니까?"}
