@@ -6,7 +6,7 @@ import { DoneFormProps, DoneFormData } from "./DoneForm.type";
 import styled from "styled-components";
 
 const Root = styled.div`
-  padding: 24px;
+  margin: 16px 24px;
 `;
 
 const Label = styled.div`
@@ -71,7 +71,6 @@ function DoneForm({ formRef }: DoneFormProps) {
 
   return (
     <Root>
-      <h3>Done 추가하기</h3>
       <div>
         <Label>내용</Label>
         <ContentArea

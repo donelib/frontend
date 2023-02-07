@@ -10,13 +10,16 @@ import styled from "styled-components";
 import { TDoneListProps } from "./DoneList.type";
 
 const Root = styled.div`
-  padding: 24px;
+  padding: 0px 24px;
   display: flex;
   flex-direction: column;
   width: calc(100% - 48px);
 `;
 
-// props date
+const Title = styled.h2`
+  margin: 0px 0px 12px 0px;
+`;
+
 function DoneList({ date }: TDoneListProps) {
   const navigate = useNavigate();
   const [doneList, setDoneList] = useState<DoneInfo[]>([]);
@@ -49,6 +52,7 @@ function DoneList({ date }: TDoneListProps) {
 
   return (
     <Root>
+      <Title>Done</Title>
       <List>
         {doneList.map((done) => {
           return (

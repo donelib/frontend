@@ -29,6 +29,10 @@ const Container = styled(Box)`
   }
 `;
 
+const Title = styled.h3`
+  margin: 0px 24px;
+`;
+
 const doneToDoneFormData = (done: DoneInfo) => {
   return {
     name: done.name,
@@ -37,7 +41,7 @@ const doneToDoneFormData = (done: DoneInfo) => {
   };
 };
 
-const ModifyDone = () => {
+function ModifyDone() {
   const navigate = useNavigate();
   const [isShowDeleteModal, setShowDeleteModal] = useState(false);
   const defaultDone = useRecoilValue(modifyDoneState);
@@ -87,10 +91,11 @@ const ModifyDone = () => {
     <Root>
       <BackButtonAppBar />
       <Container>
+        <Title>Done 수정하기</Title>
         <DoneForm formRef={formRef} />
         <Button
           variant="outlined"
-          sx={{ mx: 3, my: 1.5 }}
+          sx={{ mx: 3, mb: 1.5 }}
           onClick={showDeleteModal}
         >
           삭제하기
@@ -110,6 +115,6 @@ const ModifyDone = () => {
       </Container>
     </Root>
   );
-};
+}
 
 export default ModifyDone;

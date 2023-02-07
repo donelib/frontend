@@ -24,6 +24,10 @@ const Root = styled.div`
   flex-direction: column;
 `;
 
+const Title = styled.h3`
+  margin: 0px 24px;
+`;
+
 function AddDone() {
   const formRef = useRef(defaultDoneFormData);
   const [isIdleAddDone, setIsIdleAddDone] = useState<boolean>(true);
@@ -62,12 +66,9 @@ function AddDone() {
     <Root>
       <BackButtonAppBar />
       <Container>
+        <Title>Done 추가하기</Title>
         <DoneForm formRef={formRef} />
-        <Button
-          variant="outlined"
-          sx={{ mx: 3, my: 1.5 }}
-          onClick={submitOnClick}
-        >
+        <Button variant="outlined" sx={{ mx: 3 }} onClick={submitOnClick}>
           추가하기
         </Button>
       </Container>
