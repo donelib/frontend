@@ -14,5 +14,6 @@ echo "> copy build file to $BACKUP_PATH"
 cp build/$BUILD_NAME $BACKUP_PATH
 
 echo "> link"
-ln -sfn $BUILD_NAME $RELEASE_PATH
+ln -sfn $BUILD_DIR/$BUILD_NAME $RELEASE_PATH
+
 exit $?
