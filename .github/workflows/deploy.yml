@@ -1,0 +1,61 @@
+name: Build and Deploy React Project
+
+on:
+  push:
+    branches: master
+    paths:
+      - ".github/**"
+      - "src/**"
+      - "public/**"
+      - "scripts/**"
+  workflow_dispatch:
+
+env:
+  NODE_ENV: production
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build project
+        run: yarn build
+
+      - name: Set build name
+        run: |
+          echo "BUILD_NAME=build_$(date '+%Y-%m-%d-%s')_$(git rev-parse --short $GITHUB_SHA)" >> $GITHUB_ENV
+
+      - name: Zip build file
+        run: |
+          mkdir temp
+          cp -r appspec.yml scripts temp
+          cp -r build/ temp/$BUILD_NAME
+          zip -r front.zip temp/*
+
+      - name: Set AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Copy build file to S3
+        run: aws s3 cp --region ${{ secrets.AWS_REGION }} front.zip s3://donelib-bucket/front-deploy/front.zip
+
+      - name: Deploy with AWS codeDeploy
+        run: aws deploy create-deployment
+          --application-name donelib-codedeploy-application
+          --deployment-config-name CodeDeployDefault.OneAtATime
+          --deployment-group-name donelib-frontend
+          --s3-location bucket=donelib-bucket,bundleType=zip,key=front-deploy/front.zip
