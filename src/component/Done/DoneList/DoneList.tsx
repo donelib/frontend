@@ -26,13 +26,10 @@ function DoneList({ date }: TDoneListProps) {
   const setModifyDone = useSetRecoilState(modifyDoneState);
 
   const fetchDoneList = useCallback(async (selectDate: Date) => {
-    const from = new Date(
-      selectDate.getFullYear(),
-      selectDate.getMonth(),
-      selectDate.getDate()
-    );
+    const from = new Date(selectDate.toDateString());
     const to = new Date(from);
     to.setDate(from.getDate() + 1);
+    to.setSeconds(-1);
     const res = await getDoneList(from, to);
     setDoneList(res);
   }, []);
@@ -42,7 +39,9 @@ function DoneList({ date }: TDoneListProps) {
   }, [fetchDoneList, date]);
 
   const addButtonOnClick = () => {
-    navigate("done/add");
+    navigate("done/add", {
+      state: date.toISOString(),
+    });
   };
 
   const doneOnClick = (done: DoneInfo) => {

@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { postAddDone } from "../../api/done.repository";
 import DoneForm from "../../component/DoneForm";
 import BackButtonAppBar from "../../component/appbar/BackButtonAppBar";
@@ -29,16 +29,20 @@ const Title = styled.h3`
 `;
 
 function AddDone() {
+  const { state } = useLocation();
   const formRef = useRef(defaultDoneFormData);
   const [isIdleAddDone, setIsIdleAddDone] = useState<boolean>(true);
   const navigate = useNavigate();
 
   const addDone = async () => {
+    let date: Date = new Date(state);
+    if (date == null) date = new Date();
+    date = new Date(date.toDateString());
     try {
       setIsIdleAddDone(false);
       const data = await postAddDone(
         formRef.current.name,
-        new Date(),
+        date,
         formRef.current.tags
       );
       console.log(data);
