@@ -1,6 +1,7 @@
-import { AppBar, Toolbar, Link, IconButton, Box } from "@mui/material";
+import { AppBar, Toolbar, IconButton, Box } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useNavigate } from "react-router-dom";
+import AppBarNav from "./AppBarNav";
 
 export default function BackButtonAppBar() {
   const navigate = useNavigate();
@@ -25,40 +26,7 @@ export default function BackButtonAppBar() {
           <ArrowBackIcon />
         </IconButton>
         <Box sx={{ flexGrow: 1 }} />
-        <nav>
-          <Link
-            variant="button"
-            color="text.primary"
-            href="/"
-            sx={{ my: 1, mx: 1.5 }}
-          >
-            Done
-          </Link>
-          <Link
-            variant="button"
-            color="text.primary"
-            href="#"
-            sx={{ my: 1, mx: 1.5 }}
-          >
-            Search
-          </Link>
-          <Link
-            variant="button"
-            color="text.primary"
-            href="/tag"
-            sx={{ my: 1, mx: 1.5 }}
-          >
-            Tags
-          </Link>
-          <Link
-            variant="button"
-            color="text.primary"
-            href="#"
-            sx={{ my: 1, mx: 1.5 }}
-          >
-            Settings
-          </Link>
-        </nav>
+        <AppBarNav />
       </Toolbar>
     </AppBar>
   );
