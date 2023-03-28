@@ -7,6 +7,7 @@ import ModifyTag from "./page/modify-tag/ModifyTag";
 import TagManage from "./page/tag-manage/TagManage";
 import ModifyDone from "./page/modify-done/ModifyDone";
 import styled from "styled-components";
+import Analyze from "./page/analyze/Analyze";
 
 const Root = styled.div`
   width: 100vw;
@@ -22,6 +23,7 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Main />} />
+          <Route path="/analyze" element={<Analyze />} />
           <Route path="/tag" element={<TagManage />} />
           <Route path="/tag/add" element={<AddTag />} />
           <Route path="/tag/modify/:tagId" element={<ModifyTag />} />
