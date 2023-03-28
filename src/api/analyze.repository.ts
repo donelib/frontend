@@ -1,6 +1,5 @@
 import moment from "moment";
 import { api } from "./apiConfig";
-import DoneCountPerTag from "./data/DoneCountPerTag";
 import { AxiosResponse } from "axios";
 import { numToHexColor } from "../utils/Color";
 

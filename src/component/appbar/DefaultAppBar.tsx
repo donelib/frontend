@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Link } from "@mui/material";
+import { AppBar, Toolbar } from "@mui/material";
 import AppBarNav from "./AppBarNav";
 
 export default function DefaultAppBar() {
